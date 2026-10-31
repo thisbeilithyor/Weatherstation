@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<head>
+    <title>Wetterstation</title>
+    <link rel="stylesheet" href="./static/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script> 
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+</head>
+<style>
+
+.gestaltung {
+  color: #f50537;
+  font-size: 4vw;
+  text-align: center;
+  margin-top: -0.3vw;
+  font-family: audi-type;
+}
+.gestaltung2 {
+  color: #f50537;
+  font-size: 4vw;
+  text-align: center;
+  margin-top: -2.2vw;
+  font-family: audi-type;
+}
+</style>
+<body>
+    <div class="header">
+        <img class="logo" onclick="window.location.href='/'" src="./static/img/logo.png"/>
+        <div class="header-text" onclick="window.location.href='/'">WETTERSTATION</div>
+        <div class="weather-header">
+            <p onclick="window.location.href='/history.html'">letzte</p>
+            <img class="temp-header-pic" src="./static/img/clouds/standart.png" id="wolkenbild">
+        </div>
+    </div>
+    <div class="close-look" id="close-look">
+      <img class="close-close-look" src="./static/img/close.png"/>
+      <img class="close-close-look hover_close" src="./static/img/close_white.png"/>
+    </div>
+    <div class="main">
+        <div class="camera-prev" onclick="window.location.href='/kamera.html'">
+            <img id="latestImage" class="camera-pic" style="margin-top: 7vw">
+            <center>
+            <p class="mid" style="color: white">KAMERA</p>
+            </center>
+            <!--<p class="small">Letztes Bild: 12:00 Uhr</p>-->
+        </div>
+
+        <div class="temp-prev" id="temp_prev" onclick="window.location.href='/temperature.html'">
+            <div class="prev-upper-big"></div>
+            <div><p class="gestaltung" id="temperature">20 Grad</p></div>
+            <!--<canvas id="temp_canvas" class="temp_canvas" height=60></canvas> 
+            <!--<div class="prev-under-big"></div>-->
+            <div class="temp-prev-text">
+                <img class="temp-pic" src="./static/img/temp.png"/>
+                <p class="mid">TEMPERATUR</p>
+                <p class="small lastRecord">Letzte Aufnahme: 12:00 Uhr</p>
+            </div>
+        </div>
+
+        <div class="bodenfeuchte-prev" onclick="window.location.href='/soil_moisture.html'">
+            <div class="prev-upper-small"></div>
+            <p class="gestaltung" id="soil_moisture">7 Meter</p>
+            <div class="bodenfeuchte-prev-text">
+                <img class="bodenfeuchte-pic" src="./static/img/bodenfeuchte.png"/>
+                <p class="mid">BODENFEUCHTE</p>
+                <p class="small lastRecord">Letzte Aufnahme: 12:00 Uhr</p>
+            </div>
+        </div>
+
+        <div class="luftfeuchte-prev" onclick="window.location.href='/air_moisture.html'">
+            <div class="prev-upper-small"></div>
+            <div><p class="gestaltung" id="air_moisture">78 Kilo</p></div>
+            <div class="luftfeuchte-prev-text">
+                <img class="luftfeuchte-pic" src="./static/img/luftfeuchte.png"/>
+                <p class="mid">LUFTFEUCHTE</p>
+                <p class="small lastRecord">Letzte Aufnahme: 12:00 Uhr</p>
+            </div>
+        </div>
+
+        <div class="wind-prev" onclick="window.location.href='/wind.html'">
+            <div class="prev-upper-big prev-upper-big-1down"></div>
+            <div><p class="gestaltung2" id="windspeed">8 m/s</p></div>
+            <div class="wind-prev-text">
+                <img class="wind-pic" src="./static/img/wind.png"/>
+                <p class="mid">WIND</p>
+                <p class="small lastRecord">Letzte Aufnahme: 12:00 Uhr</p>
+            </div>
+        </div>
+
+        <div class="co2-prev" onclick="window.location.href='/co2.html'">
+            <div class="prev-upper-big prev-upper-big-1down"></div>
+            <div><p class="gestaltung2" id="co2">7855578</p></div>
+            <div class="co2-prev-text">
+                <img class="co2-pic" src="./static/img/co2.png"/>
+                <p class="mid">CO2</p>
+                <p class="small lastRecord">Letzte Aufnahme: 12:00 Uhr</p>
+            </div>
+        </div>
+
+        <div class="luftdruck-prev" onclick="window.location.href='/air_pressure.html'">
+            <div class="prev-upper-small"></div>
+            <div><p class="gestaltung" id="air_pressure">784578</p></div>
+            <div class="luftdruck-prev-text">
+                <img class="luftdruck-pic" src="./static/img/luftdruck.png"/>
+                <p class="mid">LUFTDRUCK</p>
+                <p class="small lastRecord">Letzte Aufnahme: 12:00 Uhr</p>
+            </div>
+        </div>
+
+        <div class="licht-prev" onclick="window.location.href='/light.html'">
+            <div class="prev-upper-small"></div>
+            <div><p class="gestaltung" id="light">78748</p></div>
+            <div class="licht-prev-text">
+                <img class="licht-pic" src="./static/img/licht.png"/>
+                <p class="mid">LICHT</p>
+                <p class="small lastRecord">Letzte Aufnahme: 12:00 Uhr</p>
+            </div>
+        </div>
+
+        <div class="regen-prev" onclick="window.location.href='/rain.html'">
+            <div class="prev-upper-big prev-upper-big-1down"></div>
+            <div><p class="gestaltung2" id="rainP">78785</p></div>
+            <div class="regen-prev-text">
+                <img class="regen-pic" src="./static/img/regen.png"/>
+                <p class="mid">Regen</p>
+                <p class="small lastRecord">Letzte Aufnahme: 12:00 Uhr</p>
+            </div>
+        </div>
+
+    </div>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        updateData();
+        setInterval(updateData, 60000);
+    });
+
+    
+
+    function updateData(){
+        fetch('http://IP_ADDRESS:443/getAll')
+        .then(response => response.json())
+        .then(res => {
+            const tempTD = document.getElementById('temperature');
+            tempTD.innerHTML = res.data.temperature + " &deg;C";
+
+            const airPTD = document.getElementById('air_pressure');
+            airPTD.innerHTML = res.data.air_pressure + " hPa";
+
+            const airMoistureTD = document.getElementById('air_moisture');
+            airMoistureTD.innerHTML = res.data.air_moisture + " %";
+
+            const soilMoistureTD = document.getElementById('soil_moisture');
+            soilMoistureTD.innerHTML = res.data.soil_moisture + " %";
+            
+            const lightTD = document.getElementById('light');
+            lightTD.innerHTML = res.data.light_sensor + " lx";
+            
+            const co2 = document.getElementById('co2');
+            co2.innerHTML = res.data.co2 + " ppm";
+
+            const windspeed = document.getElementById('windspeed');
+            windspeed.innerHTML = res.data.windspeed + " km/h";
+
+            const latestImage = document.getElementById('latestImage');
+            latestImage.src = res.data.img_link;
+
+            const rainP = document.getElementById('rainP');
+            rainP.innerHTML = res.data.rain + ' %';
+
+            const lastRecords = document.getElementsByClassName("lastRecord");
+            for(i=0; i<lastRecords.length; i++){
+                lastRecords[i].innerHTML = "Letzte Aufnahme: " + (res.data.timestamp).slice(-8, -3)
+            }
+
+            //wolkenbild
+            //die angegebenen Regeln für die Zuweisung des korrekten Bildes müssen noch verändert werden
+            const wolkenbild = document.getElementById('wolkenbild');
+            if(res.data.temperature > 15){
+              if(res.data.rain > 5){
+                wolkenbild.src='./static/img/clouds/standart.png';
+              }
+              else{
+                wolkenbild.src='./static/img/clouds/sonne.png';
+              }
+            }
+            else{ 
+              if(res.data.rain > 10 && res.data.windspeed > 20){
+                wolkenbild.src = './static/img/clouds/gewitter.png';
+              }
+              else if(res.data.rain > 10){
+                wolkenbild.src = './static/img/clouds/regen.png';
+              }
+              else{
+                wolkenbild.src='./static/img/clouds/standart.png';
+              }
+              
+            }
+        })
+    }
+</script>

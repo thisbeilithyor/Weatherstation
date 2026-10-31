@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<head>
+    <title>Wetterstation</title>
+    <link rel="stylesheet" href="./static/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script> 
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+</head>
+<style>
+    .gestaltung {
+    color: #f50537;
+    font-size: 4vw;
+    text-align: center;
+    margin-top: -0.3vw;
+    font-family: audi-type;
+    }
+    .gestaltung2 {
+    color: #f50537;
+    font-size: 4vw;
+    text-align: center;
+    margin-top: -2.2vw;
+    font-family: audi-type;
+    }
+</style>
+<body>
+    <div class="header" onclick="window.location.href='/'">
+        <img class="logo" src="./static/img/logo.png"/>
+        <div class="header-text">WETTERSTATION</div>
+        <div class="weather-header">
+            <p onclick="window.location.href='/'">zur&uuml;ck</p>
+        </div>
+    </div>
+    <div class="close-look" id="close-look">
+      <img class="close-close-look" src="./static/img/close.png"/>
+      <img class="close-close-look hover_close" src="./static/img/close_white.png"/>
+    </div>
+    <div class="main">
+        <div class="left-top-prev" id="left-top-prev">
+            <img id="0" style="width: 100%">
+            <center><p id="00" class="mid" style="color:white">aktuell</p></center>
+        </div>
+        <div class="left-top-prev" >
+            <img id="4" style="width: 100%">
+            <center><p id="04" class="mid" style="color:white">vor 4 Stunden</p></center>
+        </div>
+        <div class="middle-left-top-prev" >
+            <img id="1" style="width: 100%">
+            <center><p id="01" class="mid" style="color:white">vor 1 Stunde</p></center>
+        </div>
+        <div class="middle-left-bottom-prev" >
+            <img id="5" style="width: 100%">
+            <center><p id="05" class="mid" style="color:white">vor 5 Stunden</p></center>
+        </div>
+        <div class="middle-right-top-prev" >
+            <img id="2" style="width: 100%">
+            <center><p id="02" class="mid" style="color:white">vor 2 Stunden</p></center>
+        </div>
+        <div class="middle-right-bottom-prev" >
+            <img id="6" style="width: 100%">
+            <center><p id="06" class="mid" style="color:white">vor 6 Stunden</p></center>
+        </div>
+        <div class="right-left-top-prev" >
+            <img id="3" style="width: 100%">
+            <center><p id="03" class="mid" style="color:white">vor 3 Stunden</p></center>
+        </div>
+        <div class="right-left-bottom-prev" >
+            <img id="7" style="width: 100%">
+            <center><p id="07" class="mid" style="color:white">vor 7 Stunden</p></center>
+        </div>
+    </div>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        updateData();
+        setInterval(updateData, 60000);
+    });
+
+    function updateData(){
+        console.log("update");
+        fetch('http://IP_ADDRESS:443/getStoria')
+        .then(response => response.json())
+        .then(res => {
+            console.log(res.data);
+            for(let i=0; i<res.data.length; i++){
+                const myimg = document.getElementById(i+'');
+                myimg.src = res.data[i];
+
+                let id = "0"+i;
+                const p = document.getElementById(id)
+                const dateObj = new Date(res.timestamp[i]);
+                const currentTime = new Date();
+
+                const differenceInMillis = currentTime.getTime() - dateObj.getTime();
+                console.log(currentTime.getMilliseconds())
+
+
+                const differenceInMinutes = Math.floor(differenceInMillis / (1000 * 60));
+                const mins = differenceInMinutes % 60;
+                let hours = differenceInMillis / (3600*1000); //.getHours() - dateObj.getHours();
+                console.log(hours);
+                if(hours < 1){
+                    hours = 0;
+                }else{
+                    hours = Math.floor(hours)
+                }
+                const time = dateObj.toISOString().split('T')[1].split('.')[0];
+
+
+                p.innerHTML = "vor "+hours + "h " + mins+"min<br>"
+                p.innerHTML += "um "+time
+            }
+        })
+    }
+</script>

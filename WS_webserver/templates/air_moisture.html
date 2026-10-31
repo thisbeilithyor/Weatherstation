@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<head>
+    <meta charset="UTF-8">
+    <title>Luftfeuchte</title>
+    <link rel="stylesheet" href="./static/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+</head> 
+<body>
+
+<div class="header" onclick="window.location.href='/'">
+        <img class="logo" src="./static/img/logo.png"/>
+        <div class="header-text">WETTERSTATION</div>
+        <div class="weather-header">
+        </div>
+    </div>
+    <p style="color:white; font-family: audi-extended; font-size: 1.5vw; padding: 1vw;">Luftfeuchte</p>
+    <div class="prev-under-small"></div>
+    <canvas id="airmoisture_canvas" class="airmoisture_canvas" height=60></canvas>
+</body>
+<script>
+    
+async function getAirMoistureHistory() {
+    try{
+        const response = await fetch('http://IP_ADDRESS:443/getAirMoistureHistory');
+        const res = await response.json();
+        const air_moistures = await res.data.air_moistures;
+        const timestamps = await res.data.timestamps;
+        return [air_moistures, timestamps];
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+
+async function createChart() {
+    try {
+        const [air_moisture, time] = await getAirMoistureHistory();
+
+        new Chart("airmoisture_canvas", {
+        type: "line",
+        data: {
+            labels: time,
+            datasets: [{
+            data: air_moisture,
+            borderColor: '#f50537',
+            fill: true,
+            tension: 0.4,
+            borderWidth: 1
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            scales:{
+                xAxes: [{
+                    display: true, //this will remove all the x-axis grid lines
+                    ticks:{
+                        fontColor: '#ffffff'
+                    } 
+                }],
+                yAxes: [{
+                    display: true,
+                    ticks: {
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                        fontColor: '#ffffff'
+                    }
+                }]
+            },
+            responsive: true
+        }
+        });
+    } catch (error) {
+        console.error('Error fetching air moisture history:', error);
+    }
+}
+
+createChart();
+setInterval(createChart, 60000);
+</script>
+</html>

@@ -1,0 +1,481 @@
+@font-face { font-family: audi-extended; src: url('./font/AudiType-ExtendedBold.ttf'); }
+@font-face { font-family: audi-type; src: url('./font/AudiTypeVF.ttf'); }
+
+
+*, html {
+    margin:0;
+    padding:0;  
+}
+
+
+body {
+    background: linear-gradient(180deg, #4C4C4C 0%, #333333 100%);
+    background-attachment: fixed;
+}
+
+.header{
+    margin: 0px;
+    padding: 0px;
+
+    width: 100vw; 
+    height: 5vw; 
+    background: #333333; 
+    box-shadow: 0px 4px 37px 16px rgba(0, 0, 0, 0.25);
+}
+
+.logo{
+    margin-top: 1vw;
+    margin-left: 1vw; 
+    width: 9vw;
+    height: 3vw;
+}
+
+.header-text{
+    margin-top: -2.5vw;
+    margin-left: 11vw; 
+    width: 9vw;
+    height: 3vw;
+
+    color:white;
+    font-family: audi-extended;
+    font-size: 1.5vw;
+}
+
+.weather-header{
+    position: absolute;
+    color: white;
+    font-family: audi-extended;
+    font-size: 1.6vw;
+
+    margin-top: -3.5vw;
+    margin-left: 87vw;
+}
+
+.temp-header-pic{
+    position: relative;
+    margin-top: -40vw;
+    margin-left: 6vw;
+    width: 5vw;
+}
+
+.temp-header-text{
+    position: relative;
+    margin-top: 0.6vw;
+}
+
+.camera-prev{
+    background-color: rgb(76, 76, 76);
+    position: relative;
+    height: 39vw;
+    width: 33vw;
+    
+    margin-top: 2vw;
+    margin-left: 2vw;
+
+}
+.small{
+    font-size: 0.6vw;
+    font-family: audi-type;
+}
+
+.mid{
+    font-size: 1vw;
+    font-family: audi-extended;
+}
+
+.camera-prev-text{
+    /*color:white;
+    
+    position: absolute;
+    bottom: 0;
+
+    margin: 3vw;
+    margin-left: 6vw;
+    margin-bottom: 2vw;*/
+}
+
+.camera-pic{
+    width: 100%;
+
+    /*margin-left: -4.9vw;
+    margin-bottom: -2.5vw;*/
+}
+
+
+
+.temp-prev{
+    background-color: rgb(76, 76, 76);
+    position: relative;
+    height: 19vw;
+    width: 20vw;
+    
+    margin-top: -39vw;
+    margin-left: 36vw;
+
+}
+
+.temp-prev-text{
+    color:white;
+    
+    position: absolute;
+    bottom: 0;
+
+    margin: 1vw;
+    margin-left: 4vw;
+    margin-bottom: 1.5vw;
+}
+.temp-pic{
+    width: 3.5vw;
+    margin-left: -3.5vw;
+    margin-bottom: -2.9vw;
+}
+
+
+.prev-upper-big{
+    height: 7vw;
+}
+.prev-under-big{
+    width: 20vw;
+    height: 6vw;
+
+    background: rgb(68,68,68)
+}
+
+.prev-upper-big-1down{
+    height: 9vw;
+}
+
+
+.prev-upper-small{
+    height: 0.5vw;
+}
+
+.prev-under-small{
+    width: 20vw;
+    height: 4.5vw;
+
+    background: rgb(68,68,68)
+}
+
+
+.bodenfeuchte-prev{
+    background-color: rgb(76, 76, 76);
+    position: relative;
+    height: 9vw;
+    width: 20vw;
+    
+    margin-top: 1vw;
+    margin-left: 36vw;
+
+}
+
+.bodenfeuchte-prev-text{
+    color:white;
+    
+    position: absolute;
+    bottom: 0;
+
+    margin: 1vw;
+    margin-left: 4vw;
+    margin-bottom: 1.5vw;
+}
+
+.bodenfeuchte-pic{
+    width: 2.5vw;
+    margin-left: -3vw;
+    margin-bottom: -2.7vw;
+}
+
+
+
+.luftfeuchte-prev{
+    background-color: rgb(76, 76, 76);
+    position: relative;
+    height: 9vw;
+    width: 20vw;
+    
+    margin-top: 1vw;
+    margin-left: 36vw;
+
+}
+
+.luftfeuchte-prev-text{
+    color:white;
+    
+    position: absolute;
+    bottom: 0;
+
+    margin: 1vw;
+    margin-left: 4vw;
+    margin-bottom: 1.5vw;
+}
+
+.luftfeuchte-pic{
+    width: 2.5vw;
+    margin-left: -3vw;
+    margin-bottom: -2.4vw;
+}
+
+.right-top-prev{
+    background-color: rgb(76, 76, 76);
+    position: relative;
+    height: 19vw;
+    width: 20vw;
+    
+    margin-top: 1vw;
+    margin-left: 78vw;
+}
+
+.left-top-prev{
+    background-color: rgb(76, 76, 76);
+    position: relative;
+    height: 19vw;
+    width: 20vw;
+    
+    margin-top: 1vw;
+    margin-left: 8vw;
+}
+.left-bottom-prev{
+    background-color: rgb(76, 76, 76);
+    position: relative;
+    height: 19vw;
+    width: 20vw;
+    
+    margin-top: 1vw;
+    margin-left: 8vw;
+}
+.middle-left-top-prev{
+    background-color: rgb(76, 76, 76);
+    position: relative;
+    height: 19vw;
+    width: 20vw;
+    
+    margin-top: -39vw;
+    margin-left: 29vw;
+}
+.middle-left-bottom-prev{
+    background-color: rgb(76, 76, 76);
+    position: relative;
+    height: 19vw;
+    width: 20vw;
+    
+    margin-top: 1vw;
+    margin-left: 29vw;
+}
+.middle-right-top-prev{
+    background-color: rgb(76, 76, 76);
+    position: relative;
+    height: 19vw;
+    width: 20vw;
+    
+    margin-top: -39vw;
+    margin-left: 50vw;
+}
+.middle-right-bottom-prev{
+    background-color: rgb(76, 76, 76);
+    position: relative;
+    height: 19vw;
+    width: 20vw;
+    
+    margin-top: 1vw;
+    margin-left: 50vw;
+}
+.right-left-top-prev{
+    background-color: rgb(76, 76, 76);
+    position: relative;
+    height: 19vw;
+    width: 20vw;
+    
+    margin-top: -39vw;
+    margin-left: 71vw;
+}
+.right-left-bottom-prev{
+    background-color: rgb(76, 76, 76);
+    position: relative;
+    height: 19vw;
+    width: 20vw;
+    
+    margin-top: 1vw;
+    margin-left: 71vw;
+}
+.wind-prev{
+    background-color: rgb(76, 76, 76);
+    position: relative;
+    height: 19vw;
+    width: 20vw;
+    
+    margin-top: -39vw;
+    margin-left: 57vw;
+}
+
+.wind-prev-text{
+    color:white;
+    
+    position: absolute;
+    bottom: 0;
+
+    margin: 1vw;
+    margin-left: 4vw;
+    margin-bottom: 1.5vw;
+}
+
+.wind-pic{
+    width: 2.5vw;
+    margin-left: -3vw;
+    margin-bottom: -2.7vw;
+}
+
+
+
+.co2-prev{
+    background-color: rgb(76, 76, 76);
+    position: relative;
+    height: 19vw;
+    width: 20vw;
+    
+    margin-top: 1vw;
+    margin-left: 57vw;
+}
+
+.co2-prev-text{
+    color:white;
+    
+    position: absolute;
+    bottom: 0;
+
+    margin: 1vw;
+    margin-left: 4vw;
+    margin-bottom: 1.5vw;
+}
+
+.co2-pic{
+    width: 2.5vw;
+    margin-left: -3vw;
+    margin-bottom: -2.4vw;
+}
+
+
+.luftdruck-prev{
+    background-color: rgb(76, 76, 76);
+    position: relative;
+    height: 9vw;
+    width: 20vw;
+    
+    margin-top: -39vw;
+    margin-left: 78vw;
+
+}
+
+.luftdruck-prev-text{
+    color:white;
+    
+    position: absolute;
+    bottom: 0;
+
+    margin: 1vw;
+    margin-left: 4vw;
+    margin-bottom: 1.5vw;
+}
+
+.luftdruck-pic{
+    width: 2.5vw;
+    margin-left: -3vw;
+    margin-bottom: -2.4vw;
+}
+
+
+
+.licht-prev{
+    background-color: rgb(76, 76, 76);
+    position: relative;
+    height: 9vw;
+    width: 20vw;
+    
+    margin-top: 1vw;
+    margin-left: 78vw;
+
+}
+
+.licht-prev-text{
+    color:white;
+    
+    position: absolute;
+    bottom: 0;
+
+    margin: 1vw;
+    margin-left: 4vw;
+    margin-bottom: 1.5vw;
+}
+
+.licht-pic{
+    width: 2.5vw;
+    margin-left: -3vw;
+    margin-bottom: -2.4vw;
+}
+
+
+
+.regen-prev{
+    background-color: rgb(76, 76, 76);
+    position: relative;
+    height: 19vw;
+    width: 20vw;
+    
+    margin-top: 1vw;
+    margin-left: 78vw;
+
+}
+
+.regen-prev-text{
+    color:white;
+    
+    position: absolute;
+    bottom: 0;
+
+    margin: 1vw;
+    margin-left: 4vw;
+    margin-bottom: 1.5vw;
+}
+
+.regen-pic{
+    width: 2.5vw;
+    margin-left: -3vw;
+    margin-bottom: -2.4vw;
+}
+
+.temp_canvas{
+    height: 2vw;
+}
+
+.close-look{
+    position: absolute;
+    opacity: 0;
+    transition: none;
+    display: none;
+    z-index: 999;
+    left: 2vw;
+    top: 6vw;
+    width: 96vw;
+    height: 42vw;
+    filter: drop-shadow(-1px 4px 29px #000000);
+    background-color:rgb(76, 76, 76);
+}
+
+.close-close-look{
+    width: 7vw;
+    float: right;
+}
+
+.hover_close{
+    position: absolute;
+    object-fit: contain;
+    opacity: 0;
+    left: 89vw;
+}
+
+.hover_close :hover .close-close-look{
+    opactiy: 1;
+}
+
+
+

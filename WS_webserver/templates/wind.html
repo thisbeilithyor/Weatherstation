@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<head>
+    <meta charset="UTF-8">
+    <title>Wind</title>
+    <link rel="stylesheet" href="./static/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+</head> 
+<body>
+
+<div class="header" onclick="window.location.href='/'">
+        <img class="logo" src="./static/img/logo.png"/>
+        <div class="header-text">WETTERSTATION</div>
+        <div class="weather-header">
+        </div>
+    </div>
+    <p style="color:white; font-family: audi-extended; font-size: 1.5vw; padding: 1vw;">Wind</p>     
+    <div class="prev-under-small"></div>
+    <canvas id="wind_canvas" class="wind_canvas" height=60></canvas> 
+           
+</body>
+<script>
+    
+async function getWindspeedHistory() {
+    try{
+        const response = await fetch('http://IP_ADDRESS:443/getWindSpeedHistory');
+        const res = await response.json();
+        const windspeed = await res.data.windspeeds;
+        const timestamps = await res.data.timestamps;
+        return [windspeed, timestamps];
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+
+async function createChart() {
+    try {
+        const [wind_values, time] = await getWindspeedHistory();
+
+        new Chart("wind_canvas", {
+            type: "line",
+            data: {
+                labels: time,
+                datasets: [{
+                    data: wind_values,
+                    borderColor: '#f50537',
+                    fill: true,
+                    tension: 0.4,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                legend: {
+                    display: false
+                },
+                scales:{
+                    xAxes: [{
+                        display: true,
+                        ticks: {
+                            fontColor: '#ffffff'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        ticks: {
+                            suggestedMin: 0,
+                            fontColor: '#ffffff'
+                        }
+                    }]
+                },
+                responsive: true
+            }
+        });
+    } catch (error) {
+        console.error('Error fetching temperature history:', error);
+    }
+}
+
+createChart();
+setInterval(createChart, 60000);
+</script>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<head>
+    <meta charset="UTF-8">
+    <title>Temperatur</title>
+    <link rel="stylesheet" href="./static/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+</head> 
+<body>
+<div class="header" onclick="window.location.href='/'">
+        <img class="logo" src="./static/img/logo.png"/>
+        <div class="header-text">WETTERSTATION</div>
+        <div class="weather-header">
+        </div>
+    </div>
+    <p style="color:white; font-family: audi-extended; font-size: 1.5vw; padding: 1vw;">Kamera</p>
+    <center>
+        <img id="image" style="height: 35vw">
+        <p id="timestampP" class="mid" style="color: white"></p>
+    </center>
+</body>
+<script>
+    
+async function getImgLink() {
+    try{
+        const response = await fetch('http://IP_ADDRESS:443/getImgLink');
+        const res = await response.json();
+        const image = document.getElementById("image");
+        image.src = res.img_link;
+        const timestampP = document.getElementById("timestampP");
+        timestampP.innerHTML = "Aufnahmezeit: " + res.timestamp;
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+getImgLink();
+setInterval(getImgLink, 60000);
+
+</script>
+</html>
